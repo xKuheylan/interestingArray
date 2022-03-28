@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+char Arr[][70] = { 
+	"ù322dA@@kyUMGyy3t5u7UMEy~{yyEC€}{y6(y6(y6(y4ty67",
+	"6(y6(y6(y6(y6(y6(y6(3y6(3y6(3yEk€}|y1#+y15dff67fgg3ddd)=?",
+	"#+y1#+y1#+y1#+y1#+y1#+y1#+y1#+y1#+y1#+y1#&&%(JK33Y)(",
+	"+yrmjyJIHkGFFk|zxy.y-y-njfy5'y0'y,y + 37y + 33cuy[}s43",
+	"7y+37y+37yy+37y+y+ykgc#+y1#+y6(6(3yE37y-65/gt46&"};
+
+int Len0 = strlen(Arr[0]);
+int Len1 = strlen(Arr[1]);
+int Len2 = strlen(Arr[2]);
+int Len3 = strlen(Arr[3]);
+int Len4 = strlen(Arr[4]);
+
+int Len[5] = { Len0,Len1,Len2,Len3,Len4 };   
+
+int digitNum = 0, charNum = 0, totaldigit = 0, totalchar = 0;
+
+void count(char x) {
+	
+	if (isdigit(x)) {
+		digitNum++;
+		totaldigit++;        // bu fonksiyon içinde . : temelli olarak değiştiremedim diziyi global scope da tanımladım
+		// x = '.';
+	} 
+	else {
+		charNum++;
+		totalchar++;
+		// x = ':';
+	}
+}
+
+void forF() {
+	for (int i = 0; i < 5 ; i++) {
+		for (int j = 0; j < Len[i]; j++) {
+			count(Arr[i][j]);
+		}
+		cout << i + 1 << ".satirdaki rakam ve karakter sayisi : " << digitNum << " <--> " << charNum << endl;
+		digitNum *= 0;     //aynısını tekrar kullanmak için
+		charNum *= 0;     
+	}
+	cout << "Toplam rakam ve karakter: " << totaldigit << " <--> " << totalchar << endl;
+}
+
+int main() {
+
+	forF();
+
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < Len[i]; j++) {
+			if (isdigit(Arr[i][j])) {          // temelli ancak main içinde değiştirebildim
+				Arr[i][j] = '.';
+			}
+			else {
+				Arr[i][j] = ':';
+			}
+		}
+	}
+
+	return 0;
+}
